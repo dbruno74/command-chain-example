@@ -1,0 +1,23 @@
+name: command-chain-example
+base: core20 
+version: '0.1' 
+summary: command-chain-example
+description: |
+   example of use of command-chain to set an environment var
+grade: devel 
+confinement: devmode 
+
+parts:
+  print-env-var:
+    plugin: dump
+    source: print-env-var 
+  store-env-var:
+    plugin: dump
+    source: store-env-var 
+
+apps:
+  print-env-var:
+    command: print-env-var.sh
+    command-chain: [store-env-var.sh]
+ 
+
